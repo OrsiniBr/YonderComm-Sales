@@ -5,49 +5,48 @@ const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
-      required: [true, 'Please add a name'],
+      required: [true, 'Please add a name']
     },
     email: {
       type: String,
       required: [true, 'Please add an email'],
       unique: true,
-      trim: true,
       lowercase: true,
+      trim: true
     },
     password: {
       type: String,
       required: [true, 'Please add a password'],
-      minlength: [6, 'Password must be up to 6 characters'],
+      minlength: [6, 'Password must be up to 6 characters']
     },
     cartItems: [
       {
-        product: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'Product',
-          // required: true,
-        },
-        quantity: {
+         quantity: {
           type: Number,
           // required: true,
           default: 1,
         },
-      },
+        product: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'Product'
+          // required: true,
+        }
+      }
     ],
     role: {
       type: String,
       enum: ['customer', 'admin'],
-      default: 'customer',
+      default: 'customer'
     },
     //createdAt, updatedAt
-  },
+  }, 
   {
     timestamps: true,
   }
 )
 
-const User = mongoose.model('User', userSchema);
 
-//pre-save hook to has password with bcrypt
+//pre-save hook to hash password with bcrypt
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   try {
@@ -68,4 +67,7 @@ userSchema.methods.comparePassword = async function (password) {
   }
 };
 
-export default User
+const User = mongoose.model('User', userSchema);
+
+
+export default User;
