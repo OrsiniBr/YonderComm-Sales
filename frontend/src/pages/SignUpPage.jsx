@@ -1,21 +1,22 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { UserPlus, Mail, Lock, User, ArrowRight, Loader } from 'lucide-react';
+import { UserPlus, Mail, Lock, User, ArrowRight, Loader } from 'lucide-react'
 import { motion } from 'framer-motion'
+import { useUserStore } from '../stores/useUserStore'
 
 const SignUpPage = () => {
-  const loading = true
   const [formData, setFormData] = useState({
+    name: '',
     email: '',
-    username: '',
     password: '',
     confirmPassword: '',
   })
-  // const loading = false;
+
+  const { signup, loading } = useUserStore()
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(formData)
+    signup(formData)
   }
 
   return (
@@ -30,6 +31,7 @@ const SignUpPage = () => {
           Create your account
         </h2>
       </motion.div>
+
       <motion.div
         className="mt-8 sm:mx-auto sm:w-full sm:max-w-md"
         initial={{ opacity: 0, y: 20 }}
@@ -38,7 +40,6 @@ const SignUpPage = () => {
       >
         <div className="bg-gray-800 py-8 px-4 shadow sm:rounded-lg sm:px-10">
           <form onSubmit={handleSubmit} className="space-y-6">
-            {/* full name */}
             <div>
               <label
                 htmlFor="name"
@@ -64,7 +65,7 @@ const SignUpPage = () => {
                 />
               </div>
             </div>
-            {/* email */}
+
             <div>
               <label
                 htmlFor="email"
@@ -92,7 +93,7 @@ const SignUpPage = () => {
                 />
               </div>
             </div>
-            {/* password */}
+
             <div>
               <label
                 htmlFor="password"
@@ -118,7 +119,7 @@ const SignUpPage = () => {
                 />
               </div>
             </div>
-            {/* confirm password */}
+
             <div>
               <label
                 htmlFor="confirmPassword"
@@ -172,6 +173,7 @@ const SignUpPage = () => {
               )}
             </button>
           </form>
+
           <p className="mt-8 text-center text-sm text-gray-400">
             Already have an account?{' '}
             <Link
@@ -186,5 +188,4 @@ const SignUpPage = () => {
     </div>
   )
 }
-
 export default SignUpPage
