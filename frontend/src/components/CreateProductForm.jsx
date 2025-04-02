@@ -1,44 +1,19 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { PlusCircle, Upload, Loader } from 'lucide-react'
+import { useProductStore } from '../stores/useProductStore'
 
-const categories = ["jeans", "t-shirts", "shoes", "glasses", "jackets", "suits", "bags"];
-
+const categories = [
+  'jeans',
+  't-shirts',
+  'shoes',
+  'glasses',
+  'jackets',
+  'suits',
+  'bags',
+]
 
 const CreateProductForm = () => {
-  	const { createProduct, loading } = useProductStore()
-
- const handleSubmit = async (e) => {
-   e.preventDefault()
-   try {
-     await createProduct(newProduct)
-     setNewProduct({
-       name: '',
-       description: '',
-       price: '',
-       category: '',
-       image: '',
-     })
-   } catch {
-     console.log('error creating a product')
-   }
- }
-
- const handleImageChange = (e) => {
-   const file = e.target.files[0]
-   if (file) {
-     const reader = new FileReader()
-
-     reader.onloadend = () => {
-       setNewProduct({ ...newProduct, image: reader.result })
-     }
-
-     reader.readAsDataURL(file) // base64
-   }
- }
-
-
-
   const [newProduct, setNewProduct] = useState({
     name: '',
     description: '',
@@ -46,6 +21,37 @@ const CreateProductForm = () => {
     category: '',
     image: '',
   })
+
+  const { createProduct, loading } = useProductStore()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    try {
+      await createProduct(newProduct)
+      setNewProduct({
+        name: '',
+        description: '',
+        price: '',
+        category: '',
+        image: '',
+      })
+    } catch {
+      console.log('error creating a product')
+    }
+  }
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    if (file) {
+      const reader = new FileReader()
+
+      reader.onloadend = () => {
+        setNewProduct({ ...newProduct, image: reader.result })
+      }
+
+      reader.readAsDataURL(file) // base64
+    }
+  }
 
   return (
     <motion.div
@@ -173,7 +179,7 @@ const CreateProductForm = () => {
             <span className="ml-3 text-sm text-gray-400">Image uploaded </span>
           )}
         </div>
- 
+
         <button
           type="submit"
           className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md 
@@ -200,5 +206,4 @@ const CreateProductForm = () => {
     </motion.div>
   )
 }
-
 export default CreateProductForm
