@@ -31,7 +31,7 @@ const PurchaseSuccessPage = () => {
 			setIsProcessing(false);
 			setError("No session ID found in the URL");
 		}
-	}, [clearCart]); 
+	}, [clearCart]);
 
 	if (isProcessing) return "Processing...";
 
