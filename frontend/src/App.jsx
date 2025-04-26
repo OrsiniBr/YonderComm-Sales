@@ -10,6 +10,7 @@ import { useUserStore } from './stores/useUserStore';
 import { useEffect } from 'react';
 import CategoryPage from './pages/CategoryPage';
 import CartPage from './pages/CartPage';
+import PurchaseSuccessPage from './pages/PurchaseSuccessPage';
 import { useCartStore } from './stores/useCartStore';
 
 
@@ -60,6 +61,10 @@ if (checkingAuth) return <LoadingSpinner />
             path="/cart"
             element={user?.role ? <CartPage /> : <Navigate to="/login" />}
           />
+           <Route
+            path="/purchase-success"
+            element={user ? <PurchaseSuccessPage /> : <Navigate to="/login" />}
+          /> 
         </Routes>
       </div>
       <Toaster />
