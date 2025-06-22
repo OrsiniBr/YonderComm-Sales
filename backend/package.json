@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "build": "echo 'Backend build complete'"
+    "build": "echo 'Backend build complete'",
+    "dev": "node server.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -19,6 +20,6 @@
     "stripe": "^17.7.0"
   },
   "engines": {
-    "node": "22.x"
+    "node": "18.x"
   }
 }
