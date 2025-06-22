@@ -4,6 +4,28 @@ This guide explains how to deploy the frontend and backend separately on Vercel.
 
 ## Backend Deployment
 
+### Option 1: Using Deploy Scripts
+1. **Navigate to the backend directory:**
+   ```bash
+   cd backend
+   ```
+
+2. **Deploy to production:**
+   ```bash
+   npm run deploy
+   ```
+
+3. **Deploy to staging:**
+   ```bash
+   npm run deploy:staging
+   ```
+
+4. **Deploy preview:**
+   ```bash
+   npm run deploy:preview
+   ```
+
+### Option 2: Manual Deployment
 1. **Navigate to the backend directory:**
    ```bash
    cd backend
@@ -31,6 +53,34 @@ This guide explains how to deploy the frontend and backend separately on Vercel.
 
 ## Frontend Deployment
 
+### Option 1: Using Deploy Scripts
+1. **Navigate to the frontend directory:**
+   ```bash
+   cd frontend
+   ```
+
+2. **Set the backend URL environment variable:**
+   Create a `.env` file in the frontend directory:
+   ```
+   VITE_BACKEND_URL=https://your-backend-app.vercel.app
+   ```
+
+3. **Deploy to production:**
+   ```bash
+   npm run deploy
+   ```
+
+4. **Deploy to staging:**
+   ```bash
+   npm run deploy:staging
+   ```
+
+5. **Deploy preview:**
+   ```bash
+   npm run deploy:preview
+   ```
+
+### Option 2: Manual Deployment
 1. **Navigate to the frontend directory:**
    ```bash
    cd frontend
@@ -58,12 +108,23 @@ This guide explains how to deploy the frontend and backend separately on Vercel.
    - Go back to your backend Vercel project settings
    - Update the `FRONTEND_URL` environment variable with your frontend URL
 
+## Available Deploy Scripts
+
+### Backend Scripts
+- `npm run deploy` - Deploy to production
+- `npm run deploy:staging` - Deploy to staging
+- `npm run deploy:preview` - Deploy preview
+
+### Frontend Scripts
+- `npm run deploy` - Build and deploy to production
+- `npm run deploy:staging` - Build and deploy to staging
+- `npm run deploy:preview` - Deploy preview
+
 ## Configuration Files
 
 ### Backend (`backend/vercel.json`)
 - Configures the Node.js serverless function
 - Routes all API requests to `server.js`
-- Sets maximum function duration to 30 seconds
 
 ### Frontend (`frontend/vercel.json`)
 - Configures static site deployment
@@ -71,8 +132,8 @@ This guide explains how to deploy the frontend and backend separately on Vercel.
 - Serves static assets from the `dist` directory
 
 ### Package.json Updates
-- **Backend**: Added `dev` script and updated Node.js version to 18.x
-- **Frontend**: Added `start` script for Vercel
+- **Backend**: Added deployment scripts and updated Node.js version to 18.x
+- **Frontend**: Added deployment scripts and build process
 
 ## Important Notes
 
