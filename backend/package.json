@@ -5,10 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "build": "echo 'No build step required for backend'",
-    "deploy": "vercel --prod",
-    "deploy:dev": "vercel"
+    "build": "echo 'Backend build complete'"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
@@ -21,10 +18,7 @@
     "mongoose": "^8.12.1",
     "stripe": "^17.7.0"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.9"
-  },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "18.x"
   }
 }
